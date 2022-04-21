@@ -21,10 +21,9 @@ impl Node {
         if self.value.eq(value) {
             Some(acc)
         } else {
-            match self.next.as_ref() {
-                None => None,
-                Some(node) => node.find(value, acc+1)
-            }
+            self.next.as_ref()
+                .map(|node| node.find(value, acc+1))
+                .flatten()
         }
     }
 
@@ -54,7 +53,7 @@ impl Node {
         (0..index).fold(self, |acc, _| {
             match acc.next.as_ref() {
                 None => acc,
-                Some(_) => acc.next.as_mut().unwrap()
+                Some(_) => acc.next.as_deref_mut().unwrap()
             }
         })
     }

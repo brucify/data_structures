@@ -1,23 +1,23 @@
 #[derive(Debug, Clone, PartialEq)]
-pub struct Node {
+struct Node {
     value: String,
     next: Option<Box<Node>>
 }
 
 impl Node {
-    pub fn new(value: String, next: Option<Box<Node>>) -> Box<Node> {
+    fn new(value: String, next: Option<Box<Node>>) -> Box<Node> {
         Box::new(Node { value, next })
     }
 
-    pub fn value(&mut self, value: String) {
+    fn value(&mut self, value: String) {
         self.value = value;
     }
 
-    pub fn next(&mut self, next: Option<Box<Node>>) {
+    fn next(&mut self, next: Option<Box<Node>>) {
         self.next = next;
     }
 
-    pub fn find(&self, value: &String, acc: usize) -> Option<usize> {
+    fn find(&self, value: &String, acc: usize) -> Option<usize> {
         if self.value.eq(value) {
             Some(acc)
         } else {
